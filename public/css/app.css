@@ -54,3 +54,26 @@ footer{
    max-width:70%;
     margin:0 auto;
 }
+.ideas-list, .wish-section{
+    background-color: rgba(165, 165, 141, 0.20);
+}
+.ideas-list article{
+    padding:10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.ideas-list article:hover{
+    background-color: rgba(165, 165, 141, 0.70);
+}
+
+/*
+.ideas-list a article:nth-child(odd){
+    background-color: rgba(165, 165, 141, 0.40);
+    padding:10px;
+}
+
+.ideas-list a article:nth-child(odd):hover{
+    background-color: rgba(165, 165, 141, 0.70);
+}
+*/
+

@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block title %} {{ parent() }} | List {% endblock %}
 {% block body %}
-    <h3>Ceci est la page de Liste!</h3>
+    <h3>Liste de souhaits</h3>
+    <section class="ideas-list">
+        {# afficher les séries  #}
+        {% for idea in ideas %}
+            <a href="{{ path('wish_list_details', {'id':idea.id}) }}" title="View ideas details">
+                <article>
+                  {{ idea.title }}
+                </article>
+            </a>
+        {% endfor %}
+    </section>
 {% endblock %}
