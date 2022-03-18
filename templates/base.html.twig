@@ -9,9 +9,15 @@
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
 
@@ -24,6 +30,15 @@
         {% include('inc/_nav.html.twig') %}
         </div>
     </header>
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash flash-{{ label }} alert-dismissible" id="flash-msg" >
+                {{ message }}
+                <button type="button" id="close-flash" class="close" data-dismiss="flash" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
     <main>
         <div class="content-wrap">
         {%  block body %}{% endblock %}
@@ -35,5 +50,33 @@
         </div>
     </footer>
 </div>
+
+{%  block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    jQuery(document).ready(function ($){
+        setTimeout(function(){
+            $(".flash").fadeOut("slow");
+        }, 5000)
+    });
+</script>
+<script>
+    let close = document.getElementById("close-flash");
+    close && close.addEventListener("click", function(){
+        let fade = setInterval(function () {
+            if (!close.style.opacity) {
+                close.style.opacity = 1;
+            }
+            if (close.style.opacity > 0) {
+                close.style.opacity -= 0.1;
+            }
+            else {
+                clearInterval(fade);
+            }
+            close.style.display = "none";
+        }, 200);
+    });
+</script>
+{% endblock %}
 </body>
 </html>

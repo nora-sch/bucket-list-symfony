@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\WishRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=WishRepository::class)
@@ -18,6 +19,8 @@ class Wish
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Please provide a title of your wish!")
+     * @Assert\Length(min=2, max=250, minMessage = "Title has to be at least  {{ limit }} characters long!", maxMessage = "Title cannot be longer than {{ limit }} characters!")
      * @ORM\Column(type="string", length=250)
      */
     private $title;
@@ -28,19 +31,32 @@ class Wish
     private $description;
 
     /**
+     * @Assert\NotBlank(message="Please provide a author of the wish!")
+     * @Assert\Length(min=2, max=50,
+     *     minMessage="Author name has to be at least  {{ limit }} characters long!",
+     *     maxMessage = "Author name cannot be longer than {{ limit }} characters!")
      * @ORM\Column(type="string", length=50)
      */
     private $author;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default"="true"})
      */
     private $isPublished;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     private $dateCreated;
+
+    public function __construct(){
+        $this->isPublished = true;
+        $this->dateCreated = new \DateTime();
+        /*$format = 'Y-m-d H:i:s';
+        $date = new \DateTime();
+        $formattedDate = $date->format($format);
+        $this->dateCreated = \DateTime::createFromFormat($format, $formattedDate);*/
+    }
 
     public function getId(): ?int
     {
