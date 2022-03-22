@@ -8,7 +8,8 @@
    <section class="wish-section">
         <div>{{ wish.description?wish.description:"..." }}</div>
         <hr>
-        <p><a href="#" title="view author profile">{{ wish.author }}</a> | {{ wish.dateCreated | format_datetime(pattern="EEEE d MMMM Y, hh:mm", locale='fr')}}</p>
+      {#  <p><a href="#" title="view author profile">{{ wish.author }}</a> | {{ wish.dateCreated | format_datetime(pattern="EEEE d MMMM Y, hh:mm", locale='fr')}}</p>#}
+       <p>by <a href="#" title="view author profile">{{ wish.author }}</a> | {{ wish.dateCreated | format_datetime('full', 'short', locale='fr')}}</p>
     </section>
     <a href="{{ path('wish_list_ideas')}}" title="view list of ideas" > <i class="fas fa-long-arrow-alt-left fa-2x"></i></a>
 {% endblock %}

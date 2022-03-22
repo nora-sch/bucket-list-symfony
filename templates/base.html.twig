@@ -27,7 +27,12 @@
     <header>
         <div class="content-wrap">
         <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/logo.png') }}" alt="Bucket List Home" > Bucket-List</a></h1>
-        {% include('inc/_nav.html.twig') %}
+            <div class="nav-flex">
+            {% include('inc/_nav.html.twig') %}
+            {% if(app.user) %}
+                <p>Hello, <em class="em-bold">{{ app.user.pseudo }}</em>!</p>
+            {% endif %}
+            </div>
         </div>
     </header>
     {# read and display all flash messages #}

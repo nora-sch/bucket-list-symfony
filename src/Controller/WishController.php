@@ -42,7 +42,12 @@ class WishController extends AbstractController
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $wish = new Wish();
-        //$wish->setDateCreated(new \DateTime());
+        // $wish->setDateCreated(new \DateTime());
+        // dd($this->getUser());
+
+        // préremplir le champ auteur par pseudo
+        $currentUser = $this->getUser()->getUserIdentifier();
+        $wish->setAuthor($currentUser);
 
        $wishForm = $this->createForm(WishType::class, $wish);
 
