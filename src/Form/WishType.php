@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Wish;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,6 +19,10 @@ class WishType extends AbstractType
             ->add('title', TextType::class, ['label' => 'Title'])
             ->add('description', TextareaType::class, ['required' => false, 'label'=>'Description'])
             ->add('author', TextType::class, ['label' => 'Author'])
+            ->add('category', EntityType::class, [
+                'class'=>Category::class,
+                'choice_label'=>'name'
+            ]);
            // ->add('isPublished')
            // ->add('dateCreated')
         ;

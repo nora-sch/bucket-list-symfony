@@ -134,3 +134,20 @@ i{
     color:var(--dark);
     margin:10px;
 }
+
+.article-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.article-top>em{
+    font-size: small;
+    margin-left: 10px;
+}
+
+.wish-list-item>em{
+    font-size: small;
+    margin-left: 10px;
+    font-weight: normal;
+}

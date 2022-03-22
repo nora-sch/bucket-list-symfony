@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\WishRepository;
+use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -49,9 +50,16 @@ class Wish
      */
     private $dateCreated;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="wish")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function __construct(){
         $this->isPublished = true;
-        $this->dateCreated = new \DateTime();
+        //$this->dateCreated = new \DateTime();
+        $this->dateCreated =  new \DateTime('now', new DateTimeZone('Europe/Paris'));
         /*$format = 'Y-m-d H:i:s';
         $date = new \DateTime();
         $formattedDate = $date->format($format);
@@ -119,6 +127,18 @@ class Wish
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

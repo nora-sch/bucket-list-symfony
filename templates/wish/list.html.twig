@@ -8,8 +8,9 @@
             {% if idea.isPublished == true %}
                 <article>
                     <a href="{{ path('wish_list_details', {'id':idea.id}) }}" title="View ideas details">
-                        <div>
+                        <div class = "wish-list-item">
                           {{ idea.title | capitalize  }}
+                            <em>{{ idea.category.name }}</em>
                         </div>
                     </a>
                 </article>

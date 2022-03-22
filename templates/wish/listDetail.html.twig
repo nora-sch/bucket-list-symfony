@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block title %} {{ parent() }} | Wish {% endblock %}
 {% block body %}
-
+<div class="article-top">
     <h3>{{ wish.title }}</h3>
-    <section class="wish-section">
+    <em>{{ wish.category.name }}</em>
+</div>
+   <section class="wish-section">
         <div>{{ wish.description?wish.description:"..." }}</div>
         <hr>
         <p><a href="#" title="view author profile">{{ wish.author }}</a> | {{ wish.dateCreated | format_datetime(pattern="EEEE d MMMM Y, hh:mm", locale='fr')}}</p>
