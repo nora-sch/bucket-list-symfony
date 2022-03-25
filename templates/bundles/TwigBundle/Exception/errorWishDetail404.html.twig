@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{%  block body %}
+    <h2>Error 404. You got lost?</h2>
+    <p>{{ errorMsg }}</p>
+    <a href="{{ path('wish_list_ideas')}}" title="back to wishlist" > <i class="fas fa-long-arrow-alt-left fa-2x"></i></a>
+{% endblock %}
+{%  block title %}
+    Error 404
+{% endblock %}

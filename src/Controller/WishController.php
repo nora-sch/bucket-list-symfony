@@ -28,14 +28,20 @@ class WishController extends AbstractController
         ]);
     }
     /**
-     * @Route("/detail/{id}", name="list_details")
+     * @Route("/detail/{id}", name="list_details",  requirements={"id"="\d+"})
      */
     public function wish($id, WishRepository $wishRepository): Response
     {
         $wish = $wishRepository->find($id);
-        return $this->render('wish/listDetail.html.twig', [
+        if(!$wish){
+            // throw $this->createNotFoundException("The wish doesn't exist!");
+            return $this->render('bundles/TwigBundle/Exception/errorWishDetail404.html.twig', [
+                "errorMsg"=>"The wish doesn't exist!"
+            ]);
+        }else{  return $this->render('wish/listDetail.html.twig', [
             "wish"=>$wish
-        ]);
+        ]);}
+
     }
     /**
      * @Route("/create", name="create_wish")
