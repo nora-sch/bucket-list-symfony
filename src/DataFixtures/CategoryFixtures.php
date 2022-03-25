@@ -13,9 +13,9 @@ class CategoryFixtures extends Fixture
 
         $faker = \Faker\Factory::create('fr_FR');
         for($i=1; $i<=5; $i++){
-            $wish = new Category();
-            $wish->setName($faker->unique()->word());
-            $manager->persist($wish);
+            $category = new Category();
+            $category->setName($faker->unique()->word());
+            $manager->persist($category);
         }
         $manager->flush();
     }

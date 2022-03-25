@@ -4,16 +4,18 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Wish;
+use App\DataFixtures\UserFixtures;
 use App\Repository\CategoryRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-//class WishFixtures extends Fixture implements DependentFixtureInterface
-class WishFixtures extends Fixture
+class WishFixtures extends Fixture implements DependentFixtureInterface
+ //class WishFixtures extends Fixture
 {
 
     private CategoryRepository $categoryRepository;
+
     public function __construct(CategoryRepository $categoryRepository){
         $this->categoryRepository = $categoryRepository;
     }
@@ -39,6 +41,10 @@ class WishFixtures extends Fixture
     /*public function getDependencies()
     {
         // TODO: Implement getDependencies() method.
-        return[CategorieFixtures::class];
+        return[UserFixtures::class, CategorieFixtures::class];
     }*/
+        public function getDependencies()
+    {
+        return[UserFixtures::class];
+    }
 }
